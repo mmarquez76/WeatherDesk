@@ -18,8 +18,8 @@ Just download the repository, get some wallpapers (see [the Wallpapers section](
 
     $ python3 WeatherDesk.py --help
     usage: WeatherDesk.py [-h] [-d directory] [-f format] [-w seconds]
-                          [-t [{2,3,4}]] [-n] [--no-weather] [-c name [name ...]]
-                          [-o]
+                      [-t [{2,3,4}]] [-n] [--no-weather] [-c name [name ...]]
+                      [-o]
 
     WeatherDesk - Change the wallpaper based on the weather
             (Uses the Yahoo! Weather API)
@@ -28,23 +28,30 @@ Just download the repository, get some wallpapers (see [the Wallpapers section](
       -h, --help            show this help message and exit
       -d directory, --dir directory
                             Specify wallpaper directory. Default: ~/.weatherdesk_walls
+                            
       -f format, --format format
                             Specify image file format. Default: .jpg
+                            
       -w seconds, --wait seconds
                             Specify time (in seconds) to wait before updating. Default: 600
+                            
       -t [{2,3,4}], --time [{2,3,4}]
                             Use different backgrounds for different times.
-
+                            
                                 Variations:
                                   2 = day/night
                                   3 = day/evening/night [Default]
                                   4 = morning/day/evening/night
-
+                                
                                 See --naming.
+                            
       -n, --naming          Show the image file-naming rules and exit.
+                            
       --no-weather          Disable the weather functionality of the script. Wallpapers will only be changed based on the time of day.With this option, no internet connection is required.
+                            
       -c name [name ...], --city name [name ...]
                             Specify city for weather. If not given, taken from ipinfo.io.
+                            
       -o, --one-time-run    Run once, then exit.
 
 

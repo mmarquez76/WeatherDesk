@@ -70,18 +70,18 @@ def get_args():
 
     arg_parser.add_argument(
         '-d', '--dir', metavar='directory', type=str,
-        help='Specify wallpaper directory. Default: %s' % '~/.weatherdesk_walls',
+        help='Specify wallpaper directory. Default: ~/.weatherdesk_walls\n\n',
         required=False)
 
     arg_parser.add_argument(
         '-f', '--format', metavar='format', type=str,
-        help='Specify image file format. Default: %s' % '.jpg',
+        help='Specify image file format. Default: .jpg\n\n',
         default='.jpg',
         required=False)
 
     arg_parser.add_argument(
         '-w', '--wait', metavar='seconds', type=int,
-        help='Specify time (in seconds) to wait before updating. Default: 600',
+        help='Specify time (in seconds) to wait before updating. Default: 600\n\n',
         default=600,
         required=False)
 
@@ -93,28 +93,28 @@ def get_args():
       3 = day/evening/night [Default]
       4 = morning/day/evening/night
     
-    See --naming.''',
+    See --naming.\n\n''',
         type=int, choices=[2, 3, 4], default=3, required=False)
 
     arg_parser.add_argument(
         '-n', '--naming', action='store_true',
-        help='Show the image file-naming rules and exit.',
+        help='Show the image file-naming rules and exit.\n\n',
         required=False)
 
     arg_parser.add_argument(
         '--no-weather', action='store_true',
         help='Disable the weather functionality of the script. Wallpapers will only be changed based on the time of day.'
-             'With this option, no internet connection is required.',
+             'With this option, no internet connection is required.\n\n',
         required=False)
 
     arg_parser.add_argument(
         '-c', '--city', metavar='name', type=str,
-        help=str('Specify city for weather. If not given, taken from ipinfo.io.'),
+        help=str('Specify city for weather. If not given, taken from ipinfo.io.\n\n'),
         nargs='+', required=False)
 
     arg_parser.add_argument(
         '-o', '--one-time-run', action='store_true',
-        help='Run once, then exit.',
+        help='Run once, then exit.\n\n',
         required=False)
 
     return vars(arg_parser.parse_args())
