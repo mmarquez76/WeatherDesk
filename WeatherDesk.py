@@ -204,8 +204,9 @@ def get_weather_summary(weather_name):
                  'cloudy': ['cloud']}
 
     for summary, options in summaries.items():
-        if weather_name in options:
-            return summary
+        for option in options:
+            if option in weather_name:
+                return summary
     return 'normal'
 
 
