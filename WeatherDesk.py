@@ -56,7 +56,7 @@ _________________________|________________
 
  If using with --time 2, add:
  "day-" or "night-"
- 
+
  If you use --no-weather, the files have to be named simply after the time of day depending of your time schema.
  E.g.: "day.jpg", "night.jpg"
 '''
@@ -92,7 +92,7 @@ def get_args():
       2 = day/night
       3 = day/evening/night [Default]
       4 = morning/day/evening/night
-    
+
     See --naming.\n\n''',
         type=int, choices=[2, 3, 4], default=3, required=False)
 
@@ -276,21 +276,18 @@ def get_missing_files(time_level, no_weather, file_format, walls_dir):
 
 
 def get_city(city_arg):
-    if city_arg:
-        city = ' '.join(city_arg).replace(' ', '%20')
-    else:
+    if not city_arg:
         city_json_url = 'http://ipinfo.io/json'
-
-        city_json = urlopen(city_json_url).read().decode('utf-8')
-
-        city = json.loads(city_json)
-        city = city['city'].replace(' ', '%20')
-    return city
+        city = json.loads(urlopen(city_json_url).read().decode('utf-8'))
+        city_arg = city['region']
+    elif isinstance(city_arg, list):
+        city_arg = ' '.join(city_arg)
+    return urllib.parse.quote(city_arg)
 
 
 def get_current_weather(city):
-    weather_json_url = r'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + urllib.parse.quote(
-        city) + '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
+    weather_json_url = r'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + \
+        city + '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
 
     weather_json = json.loads(urlopen(weather_json_url).read().decode('utf-8'))['query']['results']['channel']
 
