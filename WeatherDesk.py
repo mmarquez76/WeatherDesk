@@ -35,6 +35,9 @@ from urllib.request import urlopen
 
 import Desktop
 
+import socket
+REMOTE_SERVER = "www.google.com"
+
 NAMING_RULES = '''
 This is how to name files in the wallpaper directory:\n
 
@@ -297,6 +300,14 @@ def get_current_weather(city):
 
     return weather, city_with_area
 
+def is_connected():
+    try:
+        host = socket.gethostbyname(REMOTE_SERVER)
+        s = socket.create_connection((host, 80), 2)
+        return True
+    except:
+        pass
+        return False
 
 def set_conditional_wallpaper(city, time_level, no_weather, walls_dir, file_format):
     if not no_weather:
@@ -351,6 +362,10 @@ if __name__ == '__main__':
 
     while True:
         try:
+            if not is_connected():
+                print("No internet connection, bypassing weather functions.")
+                parsed_args['no_weather'] = True
+
             set_conditional_wallpaper(parsed_args['city'],
                                       parsed_args['time'],
                                       parsed_args['no_weather'],
