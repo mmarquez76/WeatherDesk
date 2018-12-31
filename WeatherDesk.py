@@ -361,14 +361,15 @@ if __name__ == '__main__':
     trace_main_loop = None
 
     while True:
+        modified_args = parsed_args.copy();
         try:
             if not is_connected():
                 print("No internet connection, bypassing weather functions.")
-                parsed_args['no_weather'] = True
+                modified_args['no_weather'] = True
 
             set_conditional_wallpaper(parsed_args['city'],
                                       parsed_args['time'],
-                                      parsed_args['no_weather'],
+                                      modified_args['no_weather'],
                                       parsed_args['walls_dir'],
                                       parsed_args['file_format'])
 
