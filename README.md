@@ -2,6 +2,9 @@
 
 Change the wallpaper based on the weather and (optionally) the time.
 
+A fork of Bharadwaj Raju's original [WeatherDesk](https://gitlab.com/bharadwaj-raju/WeatherDesk) that uses a different weather API, due to changes 
+with Yahoo's weather API.
+
 ![WeatherDesk](http://i.imgur.com/F2Lml2n.png)
 
 Thanks to [Martin Hansen](http://stackoverflow.com/users/2118300/martin-hansen) for the original `Desktop.py` module.
