@@ -280,17 +280,19 @@ def get_missing_files(time_level, no_weather, file_format, walls_dir):
 
 def get_location(city_arg):
     if not city_arg:
-        city_json_url = 'http://ipinfo.io/json'
-        city = json.loads(urlopen(city_json_url).read().decode('utf-8'))
-        city_arg = city['city']
+        location_json_url = 'http://ipinfo.io/json'
+        location = json.loads(urlopen(location_json_url).read().decode('utf-8'))
+        coords = location['loc']
+        lat, lon = coords.split(',')
+        return 'lat={}&lon={}'.format(lat, lon)
     elif isinstance(city_arg, list):
         city_arg = ''.join(city_arg)
-    return urllib.parse.quote(city_arg)
+        return 'q='+urllib.parse.quote(city_arg)
 
 
-def get_current_weather(city):
-    weather_json_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + \
-        city + '&appid=7bea90eeec1bc6de108b01600691aecd'
+def get_current_weather(location):
+    weather_json_url = 'https://api.openweathermap.org/data/2.5/weather?' + \
+        location + '&appid=7bea90eeec1bc6de108b01600691aecd'
 
     weather_json = json.loads(urlopen(weather_json_url).read().decode('utf-8'))
 
