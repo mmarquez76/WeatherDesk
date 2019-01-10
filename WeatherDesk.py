@@ -128,10 +128,10 @@ def validate_args(args):
 
     if not parsed_args['no_weather']:
         try:
-            parsed_args['city'] = get_city(args['city'])
+            parsed_args['city'] = get_location(args['city'])
         except (urllib.error.URLError, ValueError):
             sys.stderr.write(
-                'Finding city from IP failed! Specify city manually with --city.')
+                'Finding ZIP from IP failed! Specify city manually with --city.')
             sys.exit(1)
 
     try:
@@ -278,25 +278,25 @@ def get_missing_files(time_level, no_weather, file_format, walls_dir):
     return missing_files
 
 
-def get_city(city_arg):
+def get_location(city_arg):
     if not city_arg:
         city_json_url = 'http://ipinfo.io/json'
         city = json.loads(urlopen(city_json_url).read().decode('utf-8'))
-        city_arg = city['region']
+        city_arg = city['city']
     elif isinstance(city_arg, list):
-        city_arg = ' '.join(city_arg)
+        city_arg = ''.join(city_arg)
     return urllib.parse.quote(city_arg)
 
 
 def get_current_weather(city):
-    weather_json_url = r'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + \
-        city + '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
+    weather_json_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + \
+        city + '&appid=7bea90eeec1bc6de108b01600691aecd'
 
-    weather_json = json.loads(urlopen(weather_json_url).read().decode('utf-8'))['query']['results']['channel']
+    weather_json = json.loads(urlopen(weather_json_url).read().decode('utf-8'))
 
-    weather = str(weather_json['item']['condition']['text']).lower()
+    weather = str(weather_json['weather'][0]['main']).lower()
 
-    city_with_area = str(weather_json['location']['city']) + str(weather_json['location']['region'])
+    city_with_area = str(weather_json['name']) + ', ' + str(weather_json['sys']['country'])
 
     return weather, city_with_area
 
