@@ -2,14 +2,12 @@
 
 Change the wallpaper based on the weather and (optionally) the time.
 
-A fork of Bharadwaj Raju's original [WeatherDesk](https://gitlab.com/bharadwaj-raju/WeatherDesk) that uses a different weather API, due to changes 
-with Yahoo's weather API.
-
+A fork of Bharadwaj Raju's original [WeatherDesk](https://gitlab.com/bharadwaj-raju/WeatherDesk) that uses the OpenWeatherMap API instead of Yahoo's weather API.
 ![WeatherDesk](http://i.imgur.com/F2Lml2n.png)
 
 Thanks to [Martin Hansen](http://stackoverflow.com/users/2118300/martin-hansen) for the original `Desktop.py` module.
 
-[![Powered by Yahoo!](https://poweredby.yahoo.com/purple.png)](https://www.yahoo.com/?ilc=401)
+[![Powered by OpenWeatherMap](https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/logo_OpenWeatherMap_orange.svg)](https://openweathermap.org/)
 
 # Installation
 
@@ -50,7 +48,7 @@ Just download the repository, get some wallpapers (see [the Wallpapers section](
                             
       -n, --naming          Show the image file-naming rules and exit.
                             
-      --no-weather          Disable the weather functionality of the script. Wallpapers will only be changed based on the time of day.With this option, no internet connection is required.
+      --no-weather          Disable the weather functionality of the script. Wallpapers will only be changed based on the time of day. With this option, no internet connection is required.
                             
       -c name [name ...], --city name [name ...]
                             Specify city for weather. If not given, coordinates are taken from ipinfo.io.
