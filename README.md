@@ -53,7 +53,7 @@ Just download the repository, get some wallpapers (see [the Wallpapers section](
       --no-weather          Disable the weather functionality of the script. Wallpapers will only be changed based on the time of day.With this option, no internet connection is required.
                             
       -c name [name ...], --city name [name ...]
-                            Specify city for weather. If not given, taken from ipinfo.io.
+                            Specify city for weather. If not given, coordinates are taken from ipinfo.io.
                             
       -o, --one-time-run    Run once, then exit.
 

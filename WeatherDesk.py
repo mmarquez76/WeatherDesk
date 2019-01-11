@@ -112,7 +112,7 @@ def get_args():
 
     arg_parser.add_argument(
         '-c', '--city', metavar='name', type=str,
-        help=str('Specify city for weather. If not given, taken from ipinfo.io.\n\n'),
+        help=str('Specify city for weather. If not given, coordinates are taken from ipinfo.io.\n\n'),
         nargs='+', required=False)
 
     arg_parser.add_argument(
@@ -288,7 +288,6 @@ def get_location(city_arg):
     elif isinstance(city_arg, list):
         city_arg = ''.join(city_arg)
         return 'q='+urllib.parse.quote(city_arg)
-
 
 def get_current_weather(location):
     weather_json_url = 'https://api.openweathermap.org/data/2.5/weather?' + \
